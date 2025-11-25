@@ -42,6 +42,17 @@ public static class Program
         using var bulk = new SqlBulkCopy(connection);
         bulk.DestinationTableName = tableName;
         bulk.BulkCopyTimeout = 0;
+        
+        bulk.ColumnMappings.Add("tpep_pickup_datetime", "tpep_pickup_datetime");
+        bulk.ColumnMappings.Add("tpep_dropoff_datetime", "tpep_dropoff_datetime");
+        bulk.ColumnMappings.Add("passenger_count", "passenger_count");
+        bulk.ColumnMappings.Add("trip_distance", "trip_distance");
+        bulk.ColumnMappings.Add("store_and_fwd_flag", "store_and_fwd_flag");
+        bulk.ColumnMappings.Add("PULocationID", "PULocationID");
+        bulk.ColumnMappings.Add("DOLocationID", "DOLocationID");
+        bulk.ColumnMappings.Add("fare_amount", "fare_amount");
+        bulk.ColumnMappings.Add("tip_amount", "tip_amount");
+        
         bulk.WriteToServer(table);
     }
 
